@@ -1,0 +1,50 @@
+# mamsc
+*MIDI Schow Control over Ethernet for MA lighting*
+
+This is an implementation of the MIDI Show Control protocol used by MA lighting.
+While initially developed for the dot2 lineup it also works for grandMA with
+some slight differences which are documented below.
+
+## Limitations
+MIDI Show Control inherited some of the limitations of MIDI. While the protocol
+is specific to MA lighting control equipment it still has some limitations.
+Executor numbers for example are `7 bit`. This means that the highest executor
+value available is `127`. Macro numbers can in fact be `8 bit`.
+
+If you are using dot2 you will be limited to the main executor and executors on
+the first page. Additionally this implementation is limited to the command
+format: `All`.
+
+## Note
+While this implementation was initially written for the dot2, it also works for
+the grandMA. There are a few differences though. Executor `0` is used for the
+main executor on the dot2. If you are using grandMA, executor `0` is actually
+the first executor. So numbering of the executors for the grandMA is zero based.
+
+Another important thing to note is that this implementation swaps the executor
+and page numbers. While you see fader `1.2` (page 1, exec 2) being sent from the
+console it will arive as `2.1`. The reason for this is that the page number is
+optional or even useless on dot2 and so you can just drop the fraction.
+
+## Console/onPC configuration
+You are required to set the MIDI Show Control mode to `Ethernet`, exec to
+`Exec.Page` and the command format to `All`. The rest of the configuration
+depends on your needs. In and out ports need to be between `6000` and `6100`
+as per the MA documentation and shouldn't be the same to prevent loops.
+MIDI channels are ignored when mode is set to `Ethernet`.
+
+## Installation
+```sh
+$ npm install mamsc --save
+```
+
+## API Reference
+{{#module name="mamsc"}}
+{{>member-index~}}
+{{>separator~}}
+{{>members~}}
+{{/module}}
+
+* * *
+
+&copy; 2017 Christian Volmering &lt;christian@volmering.name&gt;

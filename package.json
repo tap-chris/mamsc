@@ -1,0 +1,59 @@
+{
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tap-chris/mamsc.git"
+  },
+  "name": "mamsc",
+  "version": "0.1.2",
+  "description": "MIDI Schow Control over Ethernet for MA lighting",
+  "bugs": {
+    "url": "https://github.com/tap-chris/mamsc/issues"
+  },
+  "keywords": [
+    "mamsc",
+    "ma",
+    "lighting",
+    "msc",
+    "midi",
+    "schow",
+    "control",
+    "ethernet"
+  ],
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "main": "mamsc.js",
+  "files": [
+    "lib",
+    "mamsc.js"
+  ],
+  "scripts": {
+    "test": "standard lib/mamsc.es6.js",
+    "docs": "jsdoc2md --template README.hbs --partial customTags.hbs --files lib/mamsc.es6.js > README.md",
+    "build": "babel lib/mamsc.es6.js -o lib/mamsc.babel.js"
+  },
+  "author": "Christian Volmering <christian@volmering.name>",
+  "license": "GPL-3.0",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "semver": "^5.6.0"
+  },
+  "optionalDependencies": {
+    "babel-runtime": "^6.26.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "jsdoc-to-markdown": "^3.0.4",
+    "standard": "^10.0.3"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ],
+    "plugins": [
+      "transform-runtime"
+    ]
+  }
+}
