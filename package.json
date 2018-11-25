@@ -4,7 +4,7 @@
     "url": "git+https://github.com/tap-chris/mamsc.git"
   },
   "name": "mamsc",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "MIDI Schow Control over Ethernet for MA lighting",
   "bugs": {
     "url": "https://github.com/tap-chris/mamsc/issues"
@@ -25,7 +25,8 @@
   "main": "mamsc.js",
   "files": [
     "lib",
-    "mamsc.js"
+    "*.js",
+    "*.hbs"
   ],
   "scripts": {
     "test": "standard lib/mamsc.es6.js",

@@ -433,4 +433,6 @@ socket error. User input errors are thrown and not emitted.
 | err | [<code>Error</code>](https://nodejs.org/api/errors.html) | The error which occurred |
 
 
-&copy; 2017 Christian Volmering &lt;christian@volmering.name&gt;
+* * *
+
+&copy; 2018 Christian Volmering &lt;christian@volmering.name&gt;

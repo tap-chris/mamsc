@@ -4,7 +4,7 @@
  * MIDI Schow Control over Ethernet for MA lighting
  * @module mamsc
  * @license
- * Copyright (C) 2017 Christian Volmering <christian@volmering.name>
+ * Copyright (C) 2018 Christian Volmering <christian@volmering.name>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
