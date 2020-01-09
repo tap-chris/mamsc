@@ -7,7 +7,7 @@
     "registry": "https://npm.pkg.github.com/@tap-chris"
   },
   "name": "mamsc",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "MIDI Schow Control over Ethernet for MA lighting",
   "bugs": {
     "url": "https://github.com/tap-chris/mamsc/issues"
