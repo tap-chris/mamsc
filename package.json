@@ -40,7 +40,7 @@
   "license": "GPL-3.0",
   "readmeFilename": "README.md",
   "dependencies": {
-    "semver": "^7.1.1"
+    "semver": "^5.7.1"
   },
   "optionalDependencies": {
     "@babel/runtime": "^7.7.7"
