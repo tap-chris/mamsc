@@ -46,7 +46,7 @@ $ npm install mamsc --save
         * [.out(port, [address], [type])](#module_mamsc.out) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
     * _inner_
         * [~Receiver](#module_mamsc..Receiver) ⇐ [<code>EventEmitter</code>](http://nodejs.org/api/events.html)
-            * [.config](#module_mamsc..Receiver.Receiver+config) : <code>Object</code>
+            * [.config](#module_mamsc..Receiver+config) : <code>Object</code>
             * [.close()](#module_mamsc..Receiver+close) ⇒ [<code>Receiver</code>](#module_mamsc..Receiver)
             * ["error" (err)](#module_mamsc..Receiver+event_error)
             * ["message" (command, data)](#module_mamsc..Receiver+event_message)
@@ -56,7 +56,7 @@ $ npm install mamsc --save
             * ["fader" (position, exec, [fade])](#module_mamsc..Receiver+event_fader)
             * ["off" (exec)](#module_mamsc..Receiver+event_off)
         * [~Transmitter](#module_mamsc..Transmitter) ⇐ [<code>EventEmitter</code>](http://nodejs.org/api/events.html)
-            * [.config](#module_mamsc..Transmitter.Transmitter+config) : <code>Object</code>
+            * [.config](#module_mamsc..Transmitter+config) : <code>Object</code>
             * [.send(command, data)](#module_mamsc..Transmitter+send) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
             * [.goto(cue, [exec], [fade])](#module_mamsc..Transmitter+goto) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
             * [.pause([exec])](#module_mamsc..Transmitter+pause) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
@@ -69,9 +69,7 @@ $ npm install mamsc --save
 <a name="module_mamsc.in"></a>
 
 ### mamsc.in(port, [address], [type]) ⇒ [<code>Receiver</code>](#module_mamsc..Receiver)
-Create a new MIDI Show Control over Ethernet Receiver.
-The port needs to be between `6000` and `6100` as per the documentation. If
-no address is defined, the socket is bound to all interfaces.
+Create a new MIDI Show Control over Ethernet Receiver.The port needs to be between `6000` and `6100` as per the documentation. Ifno address is defined, the socket is bound to all interfaces.
 
 **Kind**: static method of [<code>mamsc</code>](#module_mamsc)  
 
@@ -83,15 +81,12 @@ no address is defined, the socket is bound to all interfaces.
 
 **Example**  
 ```js
-// Create a new receiver and receive MSC on port 6004 on all interfaces
-const receiver = require('mamsc').in(6004)
+// Create a new receiver and receive MSC on port 6004 on all interfacesconst receiver = require('mamsc').in(6004)
 ```
 <a name="module_mamsc.out"></a>
 
 ### mamsc.out(port, [address], [type]) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
-Create a new MIDI Show Control over Ethernet Transmitter.
-The port needs to be between `6000` and `6100` as per the documentation. If
-no address is defined, we brodcast to the local network.
+Create a new MIDI Show Control over Ethernet Transmitter.The port needs to be between `6000` and `6100` as per the documentation. Ifno address is defined, we brodcast to the local network.
 
 **Kind**: static method of [<code>mamsc</code>](#module_mamsc)  
 
@@ -103,8 +98,7 @@ no address is defined, we brodcast to the local network.
 
 **Example**  
 ```js
-// Create a new transmitter and brodcast MSC to port 6005 on the local network
-const transmitter = require('mamsc').out(6005)
+// Create a new transmitter and brodcast MSC to port 6005 on the local networkconst transmitter = require('mamsc').out(6005)
 ```
 <a name="module_mamsc..Receiver"></a>
 
@@ -116,7 +110,7 @@ MIDI Show Control over Ethernet Receiver
 **Emits**: [<code>error</code>](#module_mamsc..Receiver+event_error), [<code>message</code>](#module_mamsc..Receiver+event_message), [<code>goto</code>](#module_mamsc..Receiver+event_goto), [<code>pause</code>](#module_mamsc..Receiver+event_pause), [<code>resume</code>](#module_mamsc..Receiver+event_resume), [<code>fader</code>](#module_mamsc..Receiver+event_fader), [<code>off</code>](#module_mamsc..Receiver+event_off)  
 
 * [~Receiver](#module_mamsc..Receiver) ⇐ [<code>EventEmitter</code>](http://nodejs.org/api/events.html)
-    * [.config](#module_mamsc..Receiver.Receiver+config) : <code>Object</code>
+    * [.config](#module_mamsc..Receiver+config) : <code>Object</code>
     * [.close()](#module_mamsc..Receiver+close) ⇒ [<code>Receiver</code>](#module_mamsc..Receiver)
     * ["error" (err)](#module_mamsc..Receiver+event_error)
     * ["message" (command, data)](#module_mamsc..Receiver+event_message)
@@ -126,7 +120,7 @@ MIDI Show Control over Ethernet Receiver
     * ["fader" (position, exec, [fade])](#module_mamsc..Receiver+event_fader)
     * ["off" (exec)](#module_mamsc..Receiver+event_off)
 
-<a name="module_mamsc..Receiver.Receiver+config"></a>
+<a name="module_mamsc..Receiver+config"></a>
 
 #### receiver.config : <code>Object</code>
 **Kind**: instance property of [<code>Receiver</code>](#module_mamsc..Receiver)  
@@ -146,8 +140,7 @@ Close the socket and stop listening for incoming messages.
 <a name="module_mamsc..Receiver+event_error"></a>
 
 #### "error" (err)
-Emitted whenever an error accurs within the receiver. This could be either
-socket errors or errors from the protocol parser.
+Emitted whenever an error accurs within the receiver. This could be eithersocket errors or errors from the protocol parser.
 
 **Kind**: event emitted by [<code>Receiver</code>](#module_mamsc..Receiver)  
 
@@ -169,11 +162,7 @@ This is a general message event if you want to listen for all commands.
 
 **Example**  
 ```js
-// Create a new receiver and list for MSC on port 6001
-const msc = require('mamsc').in(6001)
-
-// Listen for all but the error events and log them to the console
-msc.on('message', (command, data) => { console.log(command, data) })
+// Create a new receiver and list for MSC on port 6001const msc = require('mamsc').in(6001)// Listen for all but the error events and log them to the consolemsc.on('message', (command, data) => { console.log(command, data) })
 ```
 <a name="module_mamsc..Receiver+event_goto"></a>
 
@@ -213,8 +202,7 @@ Emitted if a paused cue is continued.
 <a name="module_mamsc..Receiver+event_fader"></a>
 
 #### "fader" (position, exec, [fade])
-Emitted if a fader changed its position. The console only transmits the
-position of some faders.
+Emitted if a fader changed its position. The console only transmits theposition of some faders.
 
 **Kind**: event emitted by [<code>Receiver</code>](#module_mamsc..Receiver)  
 
@@ -247,7 +235,7 @@ MIDI Show Control over Ethernet Transmitter
 **Emits**: [<code>error</code>](#module_mamsc..Transmitter+event_error)  
 
 * [~Transmitter](#module_mamsc..Transmitter) ⇐ [<code>EventEmitter</code>](http://nodejs.org/api/events.html)
-    * [.config](#module_mamsc..Transmitter.Transmitter+config) : <code>Object</code>
+    * [.config](#module_mamsc..Transmitter+config) : <code>Object</code>
     * [.send(command, data)](#module_mamsc..Transmitter+send) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
     * [.goto(cue, [exec], [fade])](#module_mamsc..Transmitter+goto) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
     * [.pause([exec])](#module_mamsc..Transmitter+pause) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
@@ -257,7 +245,7 @@ MIDI Show Control over Ethernet Transmitter
     * [.off([exec])](#module_mamsc..Transmitter+off) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
     * ["error" (err)](#module_mamsc..Transmitter+event_error)
 
-<a name="module_mamsc..Transmitter.Transmitter+config"></a>
+<a name="module_mamsc..Transmitter+config"></a>
 
 #### transmitter.config : <code>Object</code>
 **Kind**: instance property of [<code>Transmitter</code>](#module_mamsc..Transmitter)  
@@ -272,9 +260,7 @@ MIDI Show Control over Ethernet Transmitter
 <a name="module_mamsc..Transmitter+send"></a>
 
 #### transmitter.send(command, data) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
-Sends one of the defined commands by name. The command name is identical
-to the function name. Lookup the parameters for the command at each
-function definition.
+Sends one of the defined commands by name. The command name is identicalto the function name. Lookup the parameters for the command at eachfunction definition.
 
 **Kind**: instance method of [<code>Transmitter</code>](#module_mamsc..Transmitter)  
 **Throws**:
@@ -289,20 +275,12 @@ function definition.
 
 **Example**  
 ```js
-// Create a new transmitter and brodcast MSC to port 6100
-const msc = require('mamsc').out(6100)
-
-// Set fader position of executor 12 on page 1 to 42%
-msc.send('fader', { position: 42, exec: 12 })
-
-// Goto cue Number 8.100 on the default executor with a fade time of 5 seconds
-msc.send('goto', { cue: 8.100, fade: 5 })
+// Create a new transmitter and brodcast MSC to port 6100const msc = require('mamsc').out(6100)// Set fader position of executor 12 on page 1 to 42%msc.send('fader', { position: 42, exec: 12 })// Goto cue Number 8.100 on the default executor with a fade time of 5 secondsmsc.send('goto', { cue: 8.100, fade: 5 })
 ```
 <a name="module_mamsc..Transmitter+goto"></a>
 
 #### transmitter.goto(cue, [exec], [fade]) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
-Goto a specific cue. If you don't define an executor then the main
-executor is assumed. An optional fade time can be defined in seconds.
+Goto a specific cue. If you don't define an executor then the mainexecutor is assumed. An optional fade time can be defined in seconds.
 
 **Kind**: instance method of [<code>Transmitter</code>](#module_mamsc..Transmitter)  
 **Throws**:
@@ -318,17 +296,12 @@ executor is assumed. An optional fade time can be defined in seconds.
 
 **Example**  
 ```js
-// Create a new transmitter and send MSC to 10.6.7.2 port 6008
-const msc = require('mamsc').out(6008, '10.6.7.2')
-
-// Goto cue Number 4.000 on executor 7, page 1
-msc.goto(4.000, 7.1)
+// Create a new transmitter and send MSC to 10.6.7.2 port 6008const msc = require('mamsc').out(6008, '10.6.7.2')// Goto cue Number 4.000 on executor 7, page 1msc.goto(4.000, 7.1)
 ```
 <a name="module_mamsc..Transmitter+pause"></a>
 
 #### transmitter.pause([exec]) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
-Pause an executor. If you don't define an executor then the main
-executor is assumed.
+Pause an executor. If you don't define an executor then the mainexecutor is assumed.
 
 **Kind**: instance method of [<code>Transmitter</code>](#module_mamsc..Transmitter)  
 **Throws**:
@@ -343,8 +316,7 @@ executor is assumed.
 <a name="module_mamsc..Transmitter+resume"></a>
 
 #### transmitter.resume([exec]) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
-Resume an executor. If you don't define an executor then the main
-executor is assumed.
+Resume an executor. If you don't define an executor then the mainexecutor is assumed.
 
 **Kind**: instance method of [<code>Transmitter</code>](#module_mamsc..Transmitter)  
 **Throws**:
@@ -359,10 +331,7 @@ executor is assumed.
 <a name="module_mamsc..Transmitter+fader"></a>
 
 #### transmitter.fader(position, [exec], [fade]) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
-Move a fader to a specific position. You can either set it by percentage
-or using a value between `0` and `128²-1`. If you pass a Number, percentage
-is used. If you don't define an executor then the main executor is
-assumed. An optional fade time can be defined in seconds.
+Move a fader to a specific position. You can either set it by percentageor using a value between `0` and `128²-1`. If you pass a Number, percentageis used. If you don't define an executor then the main executor isassumed. An optional fade time can be defined in seconds.
 
 **Kind**: instance method of [<code>Transmitter</code>](#module_mamsc..Transmitter)  
 **Throws**:
@@ -380,14 +349,7 @@ assumed. An optional fade time can be defined in seconds.
 
 **Example**  
 ```js
-// Create a new transmitter and bordcast MSC to port 6004 on network 10.6.7.x
-const msc = require('mamsc').out(6004, '10.6.7.255')
-
-// Set fader position of executor 3 on page 1 to 50%
-msc.fader(50, 3.1)
-
-// Set fader position of executor 8 on page 1 to 50% with a fade time of 10 seconds
-msc.fader({ value: 0x1fff }, 8, 10)
+// Create a new transmitter and bordcast MSC to port 6004 on network 10.6.7.xconst msc = require('mamsc').out(6004, '10.6.7.255')// Set fader position of executor 3 on page 1 to 50%msc.fader(50, 3.1)// Set fader position of executor 8 on page 1 to 50% with a fade time of 10 secondsmsc.fader({ value: 0x1fff }, 8, 10)
 ```
 <a name="module_mamsc..Transmitter+fire"></a>
 
@@ -407,8 +369,7 @@ Fire a macro.
 <a name="module_mamsc..Transmitter+off"></a>
 
 #### transmitter.off([exec]) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
-Switch an executor off. If you don't define an executor then the main
-executor is assumed.
+Switch an executor off. If you don't define an executor then the mainexecutor is assumed.
 
 **Kind**: instance method of [<code>Transmitter</code>](#module_mamsc..Transmitter)  
 **Throws**:
@@ -423,8 +384,7 @@ executor is assumed.
 <a name="module_mamsc..Transmitter+event_error"></a>
 
 #### "error" (err)
-Emitted whenever an error accurs within the transmitter. This is usually a
-socket error. User input errors are thrown and not emitted.
+Emitted whenever an error accurs within the transmitter. This is usually asocket error. User input errors are thrown and not emitted.
 
 **Kind**: event emitted by [<code>Transmitter</code>](#module_mamsc..Transmitter)  
 
