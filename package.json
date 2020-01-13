@@ -37,7 +37,7 @@
     "build": "babel lib/mamsc.es6.js -o lib/mamsc.babel.js"
   },
   "author": "Christian Volmering <christian@volmering.name>",
-  "license": "GPL-3.0",
+  "license": "(MIT OR GPL-3.0)",
   "readmeFilename": "README.md",
   "dependencies": {
     "semver": "^5.7.1"

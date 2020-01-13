@@ -393,6 +393,9 @@ Emitted whenever an error accurs within the transmitter. This is usually asocke
 | err | [<code>Error</code>](https://nodejs.org/api/errors.html) | The error which occurred |
 
 
+## License
+Distributed under the MIT and GPL-3.0 licenses.
+
 * * *
 
 &copy; 2018 Christian Volmering &lt;christian@volmering.name&gt;
