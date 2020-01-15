@@ -49,6 +49,7 @@ $ npm install mamsc --save
             * [.config](#module_mamsc..Receiver+config) : <code>Object</code>
             * [.close()](#module_mamsc..Receiver+close) ⇒ [<code>Receiver</code>](#module_mamsc..Receiver)
             * ["error" (err)](#module_mamsc..Receiver+event_error)
+            * ["ready"](#module_mamsc..Receiver+event_ready)
             * ["message" (command, data)](#module_mamsc..Receiver+event_message)
             * ["goto" (cue, exec, [fade])](#module_mamsc..Receiver+event_goto)
             * ["pause" (exec)](#module_mamsc..Receiver+event_pause)
@@ -64,7 +65,9 @@ $ npm install mamsc --save
             * [.fader(position, [exec], [fade])](#module_mamsc..Transmitter+fader) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
             * [.fire(macro)](#module_mamsc..Transmitter+fire) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
             * [.off([exec])](#module_mamsc..Transmitter+off) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
+            * [.close()](#module_mamsc..Transmitter+close) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
             * ["error" (err)](#module_mamsc..Transmitter+event_error)
+            * ["ready"](#module_mamsc..Transmitter+event_ready)
 
 <a name="module_mamsc.in"></a>
 
@@ -107,12 +110,13 @@ MIDI Show Control over Ethernet Receiver
 
 **Kind**: inner class of [<code>mamsc</code>](#module_mamsc)  
 **Extends**: [<code>EventEmitter</code>](http://nodejs.org/api/events.html)  
-**Emits**: [<code>error</code>](#module_mamsc..Receiver+event_error), [<code>message</code>](#module_mamsc..Receiver+event_message), [<code>goto</code>](#module_mamsc..Receiver+event_goto), [<code>pause</code>](#module_mamsc..Receiver+event_pause), [<code>resume</code>](#module_mamsc..Receiver+event_resume), [<code>fader</code>](#module_mamsc..Receiver+event_fader), [<code>off</code>](#module_mamsc..Receiver+event_off)  
+**Emits**: [<code>error</code>](#module_mamsc..Receiver+event_error), [<code>ready</code>](#module_mamsc..Receiver+event_ready), [<code>message</code>](#module_mamsc..Receiver+event_message), [<code>goto</code>](#module_mamsc..Receiver+event_goto), [<code>pause</code>](#module_mamsc..Receiver+event_pause), [<code>resume</code>](#module_mamsc..Receiver+event_resume), [<code>fader</code>](#module_mamsc..Receiver+event_fader), [<code>off</code>](#module_mamsc..Receiver+event_off)  
 
 * [~Receiver](#module_mamsc..Receiver) ⇐ [<code>EventEmitter</code>](http://nodejs.org/api/events.html)
     * [.config](#module_mamsc..Receiver+config) : <code>Object</code>
     * [.close()](#module_mamsc..Receiver+close) ⇒ [<code>Receiver</code>](#module_mamsc..Receiver)
     * ["error" (err)](#module_mamsc..Receiver+event_error)
+    * ["ready"](#module_mamsc..Receiver+event_ready)
     * ["message" (command, data)](#module_mamsc..Receiver+event_message)
     * ["goto" (cue, exec, [fade])](#module_mamsc..Receiver+event_goto)
     * ["pause" (exec)](#module_mamsc..Receiver+event_pause)
@@ -134,7 +138,7 @@ MIDI Show Control over Ethernet Receiver
 <a name="module_mamsc..Receiver+close"></a>
 
 #### receiver.close() ⇒ [<code>Receiver</code>](#module_mamsc..Receiver)
-Close the socket and stop listening for incoming messages.
+Close the underlying socket and stop listening for incoming messages.
 
 **Kind**: instance method of [<code>Receiver</code>](#module_mamsc..Receiver)  
 <a name="module_mamsc..Receiver+event_error"></a>
@@ -148,6 +152,12 @@ Emitted whenever an error accurs within the receiver. This could be eithersocke
 | --- | --- | --- |
 | err | [<code>Error</code>](https://nodejs.org/api/errors.html) | The error which occurred |
 
+<a name="module_mamsc..Receiver+event_ready"></a>
+
+#### "ready"
+Emitted when the underlying socket is created and the receiver startslistening for incomming messages.
+
+**Kind**: event emitted by [<code>Receiver</code>](#module_mamsc..Receiver)  
 <a name="module_mamsc..Receiver+event_message"></a>
 
 #### "message" (command, data)
@@ -232,7 +242,7 @@ MIDI Show Control over Ethernet Transmitter
 
 **Kind**: inner class of [<code>mamsc</code>](#module_mamsc)  
 **Extends**: [<code>EventEmitter</code>](http://nodejs.org/api/events.html)  
-**Emits**: [<code>error</code>](#module_mamsc..Transmitter+event_error)  
+**Emits**: [<code>error</code>](#module_mamsc..Transmitter+event_error), [<code>ready</code>](#module_mamsc..Transmitter+event_ready)  
 
 * [~Transmitter](#module_mamsc..Transmitter) ⇐ [<code>EventEmitter</code>](http://nodejs.org/api/events.html)
     * [.config](#module_mamsc..Transmitter+config) : <code>Object</code>
@@ -243,7 +253,9 @@ MIDI Show Control over Ethernet Transmitter
     * [.fader(position, [exec], [fade])](#module_mamsc..Transmitter+fader) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
     * [.fire(macro)](#module_mamsc..Transmitter+fire) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
     * [.off([exec])](#module_mamsc..Transmitter+off) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
+    * [.close()](#module_mamsc..Transmitter+close) ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
     * ["error" (err)](#module_mamsc..Transmitter+event_error)
+    * ["ready"](#module_mamsc..Transmitter+event_ready)
 
 <a name="module_mamsc..Transmitter+config"></a>
 
@@ -381,6 +393,12 @@ Switch an executor off. If you don't define an executor then the mainexecutor i
 | --- | --- | --- | --- |
 | [exec] | <code>Number</code> | <code>main</code> | Executor Number |
 
+<a name="module_mamsc..Transmitter+close"></a>
+
+#### transmitter.close() ⇒ [<code>Transmitter</code>](#module_mamsc..Transmitter)
+Close the underlying socket.After closing the socket no more messages can be send.
+
+**Kind**: instance method of [<code>Transmitter</code>](#module_mamsc..Transmitter)  
 <a name="module_mamsc..Transmitter+event_error"></a>
 
 #### "error" (err)
@@ -392,6 +410,12 @@ Emitted whenever an error accurs within the transmitter. This is usually asocke
 | --- | --- | --- |
 | err | [<code>Error</code>](https://nodejs.org/api/errors.html) | The error which occurred |
 
+<a name="module_mamsc..Transmitter+event_ready"></a>
+
+#### "ready"
+Emitted when the underlying socket is created and the transmitter is readyto send messages.
+
+**Kind**: event emitted by [<code>Transmitter</code>](#module_mamsc..Transmitter)  
 
 ## License
 Distributed under the MIT and GPL-3.0 licenses.
