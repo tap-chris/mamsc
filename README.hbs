@@ -38,6 +38,18 @@ MIDI channels are ignored when mode is set to `Ethernet`.
 $ npm install mamsc --save
 ```
 
+## Upgrading from v0.x to v1.x
+This upgrade might have breaking changes for you since there has been a few API
+changes.  
+In particular exec and cue numbers are now received and transmitted as Strings
+rather then Numbers. This change has been made to fix an issue with page
+numbers ending in zero which had been truncated before. Also cue numbers are
+now standardized. Parameter positions haven't changed, only types.  
+If you are using the library for dot2 only then this fix is not needed for you 
+necessarily.  
+Unless you are dependent on Numbers in your implementation this upgrade won't 
+break your code. Numbers can still be send and will be converted internally.
+
 ## API Reference
 {{#module name="mamsc"}}
 {{>member-index~}}

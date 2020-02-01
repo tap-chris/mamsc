@@ -38,6 +38,18 @@ MIDI channels are ignored when mode is set to `Ethernet`.
 $ npm install mamsc --save
 ```
 
+## Upgrading from v0.x to v1.x
+This upgrade might have breaking changes for you since there has been a few API
+changes.  
+In particular exec and cue numbers are now received and transmitted as Strings
+rather then Numbers. This change has been made to fix an issue with page
+numbers ending in zero which had been truncated before. Also cue numbers are
+now standardized. Parameter positions haven't changed, only types.  
+If you are using the library for dot2 only then this fix is not needed for you 
+necessarily.  
+Unless you are dependent on Numbers in your implementation this upgrade won't 
+break your code. Numbers can still be send and will be converted internally.
+
 ## API Reference
 
 * [mamsc](#module_mamsc)
@@ -183,8 +195,8 @@ Emitted if a Goto command is executed.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| cue | <code>Number</code> | Cue Number |
-| exec | <code>Number</code> | Executor Number |
+| cue | <code>String</code> | Cue Number |
+| exec | <code>String</code> | Executor Number |
 | [fade] | <code>Number</code> | Optional fade time |
 
 <a name="module_mamsc..Receiver+event_pause"></a>
@@ -196,7 +208,7 @@ Emitted if a cue is paused.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| exec | <code>Number</code> | Executor Number |
+| exec | <code>String</code> | Executor Number |
 
 <a name="module_mamsc..Receiver+event_resume"></a>
 
@@ -207,7 +219,7 @@ Emitted if a paused cue is continued.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| exec | <code>Number</code> | Executor Number |
+| exec | <code>String</code> | Executor Number |
 
 <a name="module_mamsc..Receiver+event_fader"></a>
 
@@ -221,7 +233,7 @@ Emitted if a fader changed its position. The console only transmits theposition
 | position | <code>Object</code> |  |
 | position.value | <code>Number</code> | Position value `[0..128²-1]` |
 | position.percent | <code>Number</code> | Position of the fader as percentage |
-| exec | <code>Number</code> | Executor Number |
+| exec | <code>String</code> | Executor Number |
 | [fade] | <code>Number</code> | Optional fade time |
 
 <a name="module_mamsc..Receiver+event_off"></a>
@@ -233,7 +245,7 @@ Emitted if a executor is switched off.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| exec | <code>Number</code> | Executor Number |
+| exec | <code>String</code> | Executor Number |
 
 <a name="module_mamsc..Transmitter"></a>
 
@@ -302,8 +314,8 @@ Goto a specific cue. If you don't define an executor then the mainexecutor is a
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| cue | <code>Number</code> |  | Cue Number |
-| [exec] | <code>Number</code> | <code>main</code> | Executor Number |
+| cue | <code>String</code> |  | Cue Number |
+| [exec] | <code>String</code> | <code>main</code> | Executor Number |
 | [fade] | <code>Number</code> | <code>no fade</code> | Optional fade time in seconds |
 
 **Example**  
@@ -323,7 +335,7 @@ Pause an executor. If you don't define an executor then the mainexecutor is ass
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [exec] | <code>Number</code> | <code>main</code> | Executor Number |
+| [exec] | <code>String</code> | <code>main</code> | Executor Number |
 
 <a name="module_mamsc..Transmitter+resume"></a>
 
@@ -338,7 +350,7 @@ Resume an executor. If you don't define an executor then the mainexecutor is as
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [exec] | <code>Number</code> | <code>main</code> | Executor Number |
+| [exec] | <code>String</code> | <code>main</code> | Executor Number |
 
 <a name="module_mamsc..Transmitter+fader"></a>
 
@@ -356,7 +368,7 @@ Move a fader to a specific position. You can either set it by percentageor usin
 | position | <code>Number</code> \| <code>Object</code> |  | Pass a Number to set the position by percentage or an Object with one of the following properties: |
 | position.percent | <code>Number</code> |  | Position of the fader as percentage |
 | position.value | <code>Number</code> |  | Position of the fader using a value between `0` and `128²-1` |
-| [exec] | <code>Number</code> | <code>main</code> | Executor Number |
+| [exec] | <code>String</code> | <code>main</code> | Executor Number |
 | [fade] | <code>Number</code> | <code>no fade</code> | Optional fade time |
 
 **Example**  
@@ -391,7 +403,7 @@ Switch an executor off. If you don't define an executor then the mainexecutor i
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [exec] | <code>Number</code> | <code>main</code> | Executor Number |
+| [exec] | <code>String</code> | <code>main</code> | Executor Number |
 
 <a name="module_mamsc..Transmitter+close"></a>
 
