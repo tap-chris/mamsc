@@ -29,7 +29,8 @@
   "files": [
     "lib",
     "*.js",
-    "*.hbs"
+    "*.hbs",
+    "*.txt"
   ],
   "scripts": {
     "test": "standard lib/mamsc.es6.js",
