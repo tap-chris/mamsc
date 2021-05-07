@@ -8,8 +8,4 @@
  * Licensed under the MIT and GPL-3.0 licenses.
  */
 
-if (require('semver').satisfies(process.version, '>=7.0.0')) {
-  module.exports = require('./lib/mamsc.es6')
-} else {
-  module.exports = require('./lib/mamsc.babel')
-}
+module.exports = require('./lib/mamsc')
